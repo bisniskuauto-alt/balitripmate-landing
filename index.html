@@ -5,6 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BaliTripMate — Your AI Tour Guide for Bali & Lombok</title>
 <meta name="description" content="Your personal AI tour guide for Bali & Lombok. Plan your perfect trip in minutes — hidden gems, hotels, restaurants & day-by-day itinerary. Available 24/7 in all languages.">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1189153411264253');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'BaliTripMate Landing Page',
+  content_category: 'AI Tour Guide',
+  currency: 'USD'
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1189153411264253&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -522,7 +544,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">🌴 BaliTrip<span>Mate</span></div>
-  <a href="https://bisnisku5.gumroad.com/l/balitripmate" target="_blank" class="nav-cta">Get Access →</a>
+  <a href="https://bisnisku5.gumroad.com/l/balitripmate" target="_blank" class="nav-cta" onclick="fbq('track', 'AddToCart', {content_name: 'BaliTripMate', currency: 'USD'})">Get Access →</a>
 </nav>
 
 <!-- HERO -->
@@ -876,6 +898,21 @@
     const nav = document.querySelector('nav');
     nav.style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(0,0,0,0.1)' : 'none';
   });
+  // Meta Pixel — AddToCart on all Gumroad buttons
+  document.querySelectorAll('a[href*="gumroad.com"]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const text = this.textContent.trim();
+      let plan = 'BaliTripMate';
+      let price = 0;
+      if (text.toLowerCase().includes('explorer')) { plan = 'Explorer 1 Month'; price = 19.99; }
+      else if (text.toLowerCase().includes('adventurer') || text.toLowerCase().includes('planning') || text.toLowerCase().includes('now') || text.toLowerCase().includes('access')) { plan = 'Adventurer 6 Months'; price = 39.99; }
+      fbq('track', 'AddToCart', {
+        content_name: plan,
+        content_category: 'AI Tour Guide',
+        currency: 'USD',
+        value: price
+      });
+    });
+  });
 </script>
-</body>
 </html>
